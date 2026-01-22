@@ -6,8 +6,16 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
+// Middleware - Updated CORS to allow Vercel frontend
+app.use(cors({
+  origin: [
+    'https://calculator-kappa-inky-45.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:5500'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // MongoDB connection URL - update this with your Atlas connection string
